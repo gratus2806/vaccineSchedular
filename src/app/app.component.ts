@@ -105,7 +105,7 @@ export class AppComponent {
         setTimeout(() => {
           console.log('hide');
           this.verifiedSuccess = false;
-          window.location.reload();
+         
         }, 3000);
         this.verifiedFailed=false;
       }else{
