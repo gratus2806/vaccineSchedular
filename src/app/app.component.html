@@ -1,0 +1,114 @@
+<div class="container register">
+  <div class="row">
+      <div class="col-md-3 register-left">
+          <img (click)=regform()  src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+          <h3 (click)=securityVerification() >Welcome</h3>
+          <p>You are 30 seconds away from Registering Your Child for Vaccination Drive</p>
+          <p>Children between 6 months to 18yrs.
+            Vaccine Cost is Mrp ₹1200/per dose
+            </p>
+      </div>
+      <div class="col-md-9 register-right" *ngIf="UserRegPageChield">
+          <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
+                  <div class="alert alert-danger" role="alert" *ngIf="userDetailMissMatch">
+                    Please Enter Mobile No. Again...
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="userDetail">
+                    Please Enter All Details...
+                  </div>
+                  <div class="alert alert-success" role="alert" *ngIf="successfull">
+                    You Have Successfully Registered...
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="failed">
+                    Something went wrong try again...
+                  </div>
+                  <!-- <form  [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()" > -->
+                  <div class="row register-form">
+                    
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <input type="text" class="form-control" [(ngModel)]="childName" placeholder="Child Full Name *" required />
+                          </div>
+                          <div class="form-group">
+                              <input type="text" class="form-control" [(ngModel)]="age" placeholder="Age *" required />
+                          </div>
+                          <div class="form-group">
+                              <input type="text" class="form-control" [(ngModel)]="parentName" placeholder="Parent Full Name *" required />
+                          </div>
+                          <div class="form-group">
+                              <input type="text" class="form-control" [(ngModel)]="mobileNo" placeholder="Mobile Number *" required />
+                          </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="village" placeholder="Village *" required />
+                          </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="parish" placeholder="Parish *" required />
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <select class="form-control" [(ngModel)]="selectedGender">
+                            <option class="hidden"  selected disabled >Gender</option>
+                            <option >Male</option>
+                            <option>Female</option>
+                        </select>
+                          
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control" [(ngModel)]="selectedHistory">
+                              <option class="hidden"  selected disabled>Any Medical History</option>
+                              <option>Yes</option>
+                              <option>No</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control" [(ngModel)]="selectedDose">
+                              <option class="hidden"  selected disabled>Dose 1</option>
+                              <option>Yes</option>
+                              <option>No</option>
+                          </select>
+                        </div>
+                          <input (click)="onSubmitRegistrationForm()" type="submit" class="btnRegister"  value="Register"/>
+                      </div>
+                  </div>
+                <!-- </form> -->
+              </div>
+          </div>
+      </div>
+      <div class="col-md-9 register-right" *ngIf="UserSecurityVerify">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
+               
+                <!-- <form  [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()" > -->
+                <div class="row register-form">
+                  
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="secNo" placeholder="Secret No *"  />
+                        </div>
+                        <h2>Or</h2>
+                        <div class="form-group">
+                          <input type="text" class="form-control" [(ngModel)]="mobNO" placeholder="Mobie No. "  />
+                      </div>
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <input (click)="onSubmitVerify()" type="submit" class="btnRegister"  value="Verify"/>
+                    </div>
+                   
+                </div>
+                <div class="alert alert-success" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedSuccess">
+                  User Data Is Verified...
+                </div>
+                <div class="alert alert-danger" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedFailed">
+                  User Data Failed Verifcation...
+                </div>
+              <!-- </form> -->
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
