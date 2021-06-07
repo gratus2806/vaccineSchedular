@@ -63,8 +63,8 @@ onuserdatatable=true;
       var str = new String(this.userRegData.mobileNo) 
       var mobNoLen = str.length
       if(mobNoLen==10){
+        this.loadingForm=true;
         this.userService.userRegDetails(this.userRegData).subscribe(data => {
-          this.loadingForm=true;
           if(data['status']==true){
             this.loadingForm=false;
             this.successfull=true;
