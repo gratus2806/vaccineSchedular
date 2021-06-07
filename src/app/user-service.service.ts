@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserServiceService {
-  // https://mysterious-cove-63204.herokuapp.com
+
   constructor(private http: HttpClient,private router: Router) { }
     userRegDetails(userRegData){
       return this.http.post('https://mysterious-cove-63204.herokuapp.com/api/user_details_reg',userRegData);
