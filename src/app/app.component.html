@@ -1,5 +1,5 @@
-<div class="container register">
-  <div class="row">
+<div class="container register" *ngIf="onuserdatatable">
+  <div class="row" >
       <div class="col-md-3 register-left">
           <img (click)=regform()  src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
           <h3 (click)=securityVerification() >Welcome</h3>
@@ -23,6 +23,9 @@
                   </div>
                   <div class="alert alert-danger" role="alert" *ngIf="failed">
                     Something went wrong try again...
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="showDataavailDiv">
+                   {{dataAvailablity}}...
                   </div>
                   <!-- <form  [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()" > -->
                   <div class="row register-form">
@@ -71,6 +74,7 @@
                           </select>
                         </div>
                           <input (click)="onSubmitRegistrationForm()" type="submit" class="btnRegister"  value="Register"/>
+                          
                       </div>
                   </div>
                 <!-- </form> -->
@@ -97,11 +101,12 @@
                     </div>
                     <div class="col-md-6">
                         <input (click)="onSubmitVerify()" type="submit" class="btnRegister"  value="Verify"/>
+                        <input (click)="exportExcel()" type="submit" class="btnRegister"  value="Export"/>
                     </div>
                    
                 </div>
                 <div class="alert alert-success" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedSuccess">
-                  User Data Is Verified...
+                  User Data Is  Verified from {{parishName}}...
                 </div>
                 <div class="alert alert-danger" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedFailed">
                   User Data Failed Verifcation...
@@ -110,5 +115,52 @@
             </div>
         </div>
     </div>
+    
+  </div>
+ 
+</div>
+<div class="container" *ngIf="userDataTable">
+  <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
+          
+          <div class="row register-form" style="padding: 10% 1%;margin-top: 10%;">
+            <div style="width: 100%;">
+              <input style="float: right;margin-bottom: 5%;margin-top: 1%;border: none;border-radius: 1.5rem;padding: 2%;background: #0062cc;color: #fff;font-weight: 600;width: 20%;cursor: pointer; margin-right: 2px;" (click)="exportExcelSheet()" type="submit" class="btnRegister"  value="Export"/>
+              <input style="float: right;margin-bottom: 5%;margin-top: 1%;border: none;border-radius: 1.5rem;padding: 2%;background: #0062cc;color: #fff;font-weight: 600;width: 20%;cursor: pointer;margin-right: 15px;" (click)="back()" type="submit" class="btnRegister"  value="Back"/>
+            </div>
+          
+            <div class="col-md-12">
+                <table id="excel-table">
+                  <tr>
+                    <th>Child Name </th>
+                    <th>Parent Name </th>
+                    <th>Mobile </th>
+                    <th>Village </th>
+                    <th>Parish </th>
+                    <th>Age </th>
+                    <th>Gender </th>
+                    <th>Dose 1 </th>
+                    <th>Med History </th>
+                  </tr>
+                  <tr *ngFor="let item of userList">
+                    <td>{{item.chieldFullName}}</td>
+                    <td>{{item.parentFullName}}</td>
+                    <td>{{item.mobileNo}}</td>
+                    <td>{{item.Village}}</td>
+                    <td>{{item.Parish}}</td>
+                    <td>{{item.Age}}</td>
+                    <td>{{item.Gender}}</td>
+                    <td>{{item.Dose1}}</td>
+                    <td>{{item.anyHistoryOfAllergies}}</td>
+                  </tr>
+
+                </table>
+               
+            </div>
+           
+           
+          </div>
+      </div>
   </div>
 </div>

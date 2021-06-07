@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { UserServiceService } from './user-service.service';
 import {Router,ActivatedRoute} from "@angular/router";
+import * as XLSX from 'xlsx';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,8 +30,20 @@ export class AppComponent {
   verifiedFailed;
   successfull;
   failed;
+  parishName;
+  dataAvailablity;
+  showDataavailDiv;
+
+  fileName="TaskForce Influnza.xlsx"
+  userList;
+userDataTable;
+onuserdatatable=true;
   constructor(public userService: UserServiceService, private router: Router) {
     this.UserRegPageChield=true;
+    this.userService.getUserRegDetails().subscribe(data => {
+      console.log("userList",data)
+      this.userList=data['userAuth'];
+    })
   }
   onSubmitRegistrationForm(){
     
@@ -58,12 +72,23 @@ export class AppComponent {
               window.location.reload();
             }, 3000);
           }else{
-            this.failed=true;
-            setTimeout(() => {
-              console.log('hide');
-              this.failed = false;
-              
-            }, 3000);
+            if(data['dataAvailableStatus']==true){
+              this.dataAvailablity="Child Data already Exists...";
+              this.showDataavailDiv=true;
+              setTimeout(() => {
+                console.log('hide');
+                this.showDataavailDiv = false;
+                
+              }, 3000);
+            }else{
+              this.failed=true;
+              setTimeout(() => {
+                console.log('hide');
+                this.failed = false;
+                
+              }, 3000);
+            }
+            
           }
           
         })
@@ -99,7 +124,8 @@ export class AppComponent {
     }
     
     this.userService.loginDetails(this.userData).subscribe(data => {
-      console.log("Verified_data",data);
+      // console.log("Verified_data",data);
+      this.parishName = data['parishName']
       if(data['status']==true){
         this.verifiedSuccess=true;
         setTimeout(() => {
@@ -121,5 +147,32 @@ export class AppComponent {
   regform(){
     this.UserRegPageChield = true;
     this.UserSecurityVerify = false;
+  }
+
+  back(){
+    this.userDataTable=false;
+    this.onuserdatatable=true;
+    this.UserSecurityVerify=false;
+    this.UserRegPageChield=true;
+  }
+  exportExcel(){
+    this.userDataTable=true;
+    this.onuserdatatable=false;
+    this.UserSecurityVerify=false;
+    this.UserRegPageChield=false;
+    // let element = document.getElementById('excel-table');
+    // const ws:XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    // const wb:XLSX.WorkBook = XLSX.utils.book_new();
+    // XLSX.utils.book_append_sheet(wb,ws,'sheet1');
+    // XLSX.writeFile(wb,this.fileName)
+
+
+  }
+  exportExcelSheet(){
+     let element = document.getElementById('excel-table');
+    const ws:XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    const wb:XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,'sheet1');
+    XLSX.writeFile(wb,this.fileName)
   }
 }
