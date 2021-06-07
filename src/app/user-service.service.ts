@@ -10,13 +10,13 @@ export class UserServiceService {
   // https://mysterious-cove-63204.herokuapp.com
   constructor(private http: HttpClient,private router: Router) { }
     userRegDetails(userRegData){
-      return this.http.post('http://localhost:3000/api/user_details_reg',userRegData);
+      return this.http.post('https://mysterious-cove-63204.herokuapp.com/api/user_details_reg',userRegData);
     }
     loginDetails(userData){
-      return this.http.post('http://localhost:3000/api/user_details',userData);
+      return this.http.post('https://mysterious-cove-63204.herokuapp.com/api/user_details',userData);
     }
     getUserRegDetails(){
-      return this.http.get('http://localhost:3000/api/getUser_details');
+      return this.http.get('https://mysterious-cove-63204.herokuapp.com/api/getUser_details');
     }
   
 }
