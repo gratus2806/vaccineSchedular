@@ -33,7 +33,7 @@ export class AppComponent {
   parishName;
   dataAvailablity;
   showDataavailDiv;
-
+  loadingForm;
   fileName="TaskForce Influnza.xlsx"
   userList;
 userDataTable;
@@ -64,7 +64,9 @@ onuserdatatable=true;
       var mobNoLen = str.length
       if(mobNoLen==10){
         this.userService.userRegDetails(this.userRegData).subscribe(data => {
+          this.loadingForm=true;
           if(data['status']==true){
+            this.loadingForm=false;
             this.successfull=true;
             setTimeout(() => {
               console.log('hide');
@@ -81,6 +83,7 @@ onuserdatatable=true;
                 
               }, 3000);
             }else{
+              this.loadingForm=false;
               this.failed=true;
               setTimeout(() => {
                 console.log('hide');
