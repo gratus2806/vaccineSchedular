@@ -18,6 +18,7 @@ export class UserServiceService {
     getUserRegDetails(){
       return this.http.get('https://mysterious-cove-63204.herokuapp.com/api/getUser_details');
     }
+    // https://mysterious-cove-63204.herokuapp.com
   
 }
  

@@ -1,0 +1,214 @@
+<div class="container register" *ngIf="onuserdatatable">
+  
+    <div class="row" >
+      
+        <div class="col-md-3 register-left">
+            <img (click)=regform()  src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+            <h3 (click)=securityVerification() >Welcome</h3>
+            <p>You are 30 seconds away from Registering Your Child for Vaccination Drive</p>
+            <p>Children between 6 months to 18yrs.
+              Vaccine Cost is Mrp ₹1200/per dose
+              </p>
+        </div>
+        
+        <div class="col-md-9 register-right" *ngIf="UserRegPageChield">
+          <div style="position: absolute;top: 35%;left: 38%;z-index: 1;" *ngIf="loadingForm" >
+            <img style="margin: 30px auto;height: 84px;" src="../assets/loading.gif" />
+            </div>
+            <div class="tab-content" id="myTabContent"  [class.blur]="loadingForm">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
+                    <h4 class="register-heading2" style="color: red;">नंदाखाल टास्कफोर्स  इंफ्लून्झा विकसिनॅशन कॅम्प </h4>
+                    <div class="alert alert-danger" role="alert" *ngIf="userDetailMissMatch">
+                      Please Enter Mobile No. Again...
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="userDetail">
+                      Please Enter All Details...
+                    </div>
+                    <div class="alert alert-success" role="alert" *ngIf="successfull">
+                      You Have Successfully Registered...
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="failed">
+                      Something went wrong try again...
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="showDataavailDiv">
+                     {{dataAvailablity}}...
+                    </div>
+                    <!-- <form  [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()" > -->
+                    <div class="row register-form" style="padding-bottom: 6%;">
+                      
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control textTran" [(ngModel)]="childName" placeholder="Child Name / मुलाचा नाव  *" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control textTran" [(ngModel)]="age" placeholder="Age / वय  *" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control textTran" [(ngModel)]="parentName" placeholder="Parent Name / पालकांचं नाव *" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control textTran" [(ngModel)]="mobileNo" placeholder="Mobile Number / मोबाईल नंबर *" required />
+                            </div>
+
+                            <!-- <div class="form-group">
+                              <input type="text" class="form-control" [(ngModel)]="village" placeholder="Village *" required />
+                            </div> -->
+                            <div class="form-group">
+                              <select class="form-control" [(ngModel)]="parish">
+                                <option class="hidden"  selected disabled >Select Parish / पॅरिष निवडा</option>
+                                <option >Nandakhal</option>
+                                <!-- <option>Female</option> -->
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <select class="form-control textTran" [(ngModel)]="village">
+                                <option class="hidden"  selected disabled >Select Village / गाव निवडा</option>
+                                <option >Angali</option>
+                                <option >Bavkhaul</option>
+                                <option >Banbhat</option>
+                                <option >Dontalav</option>
+                                <option >Ghotar - Anjeri</option>
+                                <option >Ghosali</option>
+                                <option >Ghotkal</option>
+                                <option >Jeladi-Adlai-Talai</option>
+                                <option >Khivni </option>
+                                <option >Khodale</option>
+                                <option >Kedar-J.P Nagar-Ponda</option>
+                                <option >Lalodi</option>
+                                <option >Medhe-Borbat</option>
+                                <option >Melody</option>
+                                <option >Mashad Ali</option>
+                                <option >Nandan</option>
+                                <option >Nonodi</option>
+                                <option >Padai-morwadi-gajure</option>
+                                <option >Persav</option>
+                                <option >Pedi</option>
+                                <option >Ranebhat </option>
+                                <option >Rumao Ali</option>
+                                <option >Torbhat-vadkhamb</option>
+                                <option >Unganbhat</option>
+                                <option >Vadi </option>
+                                <option >Vatlai</option>
+                                <option >Vatar-Barodi</option>
+                              </select>
+                            </div>
+                            
+                            
+                            <!-- <div class="form-group">
+                              <input type="text" class="form-control" [(ngModel)]="parish" placeholder="Parish *" required />
+                            </div> -->
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <select class="form-control textTran" [(ngModel)]="selectedGender">
+                              <option class="hidden"  selected disabled >Gender / लिंग निवडा</option>
+                              <option >Male</option>
+                              <option>Female</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <select class="form-control textTran" [(ngModel)]="selectedHistory">
+                                <option class="hidden"  selected disabled>Any Medical History</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <select class="form-control textTran" [(ngModel)]="selectedDose">
+                                <option class="hidden"  selected disabled>Dose 1 / पहिला डोस</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                          </div>
+                            <input (click)="onSubmitRegistrationForm()" type="submit" class="btnRegister"  value="Register / नोंदणी करा"/>
+                            
+                        </div>
+                    </div>
+                  <!-- </form> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 register-right" *ngIf="UserSecurityVerify">
+          <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
+                 
+                  <!-- <form  [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()" > -->
+                  <div class="row register-form">
+                    
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <input type="text" class="form-control" [(ngModel)]="secNo" placeholder="Secret No *"  />
+                          </div>
+                          <h2>Or</h2>
+                          <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="mobNO" placeholder="Mobie No. "  />
+                        </div>
+                         
+                      </div>
+                      <div class="col-md-6">
+                          <input (click)="onSubmitVerify()" type="submit" class="btnRegister"  value="Verify"/>
+                          <input (click)="exportExcel()" type="submit" class="btnRegister"  value="Export"/>
+                      </div>
+                     
+                  </div>
+                  <div class="alert alert-success" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedSuccess">
+                    User Data Is  Verified from {{parishName}}...
+                  </div>
+                  <div class="alert alert-danger" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedFailed">
+                    User Data Failed Verifcation...
+                  </div>
+                <!-- </form> -->
+              </div>
+          </div>
+      </div>
+      
+    </div>
+   
+  </div>
+  <div class="container" *ngIf="userDataTable">
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
+            
+            <div class="row register-form" style="padding: 10% 1%;margin-top: 10%;">
+              <div style="width: 100%;">
+                <input style="float: right;margin-bottom: 5%;margin-top: 1%;border: none;border-radius: 1.5rem;padding: 2%;background: #0062cc;color: #fff;font-weight: 600;width: 20%;cursor: pointer; margin-right: 2px;" (click)="exportExcelSheet()" type="submit" class="btnRegister"  value="Export"/>
+                <input style="float: right;margin-bottom: 5%;margin-top: 1%;border: none;border-radius: 1.5rem;padding: 2%;background: #0062cc;color: #fff;font-weight: 600;width: 20%;cursor: pointer;margin-right: 15px;" (click)="back()" type="submit" class="btnRegister"  value="Back"/>
+              </div>
+            
+              <div class="col-md-12">
+                  <table id="excel-table">
+                    <tr>
+                      <th>Child Name </th>
+                      <th>Parent Name </th>
+                      <th>Mobile </th>
+                      <th>Village </th>
+                      <th>Parish </th>
+                      <th>Age </th>
+                      <th>Gender </th>
+                      <th>Dose 1 </th>
+                      <th>Med History </th>
+                    </tr>
+                    <tr *ngFor="let item of userList">
+                      <td>{{item.chieldFullName}}</td>
+                      <td>{{item.parentFullName}}</td>
+                      <td>{{item.mobileNo}}</td>
+                      <td>{{item.Village}}</td>
+                      <td>{{item.Parish}}</td>
+                      <td>{{item.Age}}</td>
+                      <td>{{item.Gender}}</td>
+                      <td>{{item.Dose1}}</td>
+                      <td>{{item.anyHistoryOfAllergies}}</td>
+                    </tr>
+  
+                  </table>
+                 
+              </div>
+             
+             
+            </div>
+        </div>
+    </div>
+  </div>
