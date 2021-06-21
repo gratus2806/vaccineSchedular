@@ -15,7 +15,7 @@ export class UserRegistratonPageComponent implements OnInit {
   // village="Select Village / गाव निवडा";
   // parish="Select Parish / पॅरिष निवडा";
   selectedHistory="Any Medical History";
-  selectedDose="Dose 1 / पहिला डोस"
+  selectedDose="Select Dose / डोस निवडा"
   childName;
   age;
   parentName;

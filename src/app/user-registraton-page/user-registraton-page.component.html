@@ -56,7 +56,7 @@
                             </div>
 
                             <div class="form-group">
-                              <input type="text" class="form-control textTran" [(ngModel)]="village" placeholder="Village / गाव निवडा *" required />
+                              <input type="text" class="form-control textTran" [(ngModel)]="village" placeholder="Your Village / गाव निवडा *" required />
                             </div>
                             <!-- <div class="form-group">
                               <select class="form-control" [(ngModel)]="parish">
@@ -99,7 +99,7 @@
                             
                             
                             <div class="form-group">
-                              <input type="text" class="form-control textTran" [(ngModel)]="parish" placeholder="Parish / Area *" required />
+                              <input type="text" class="form-control textTran" [(ngModel)]="parish" placeholder="Your Parish / Area *" required />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -119,9 +119,9 @@
                           </div>
                           <div class="form-group">
                             <select class="form-control textTran" [(ngModel)]="selectedDose">
-                                <option class="hidden"  selected disabled>Dose 1 / पहिला डोस</option>
-                                <option>Yes</option>
-                                <option>No</option>
+                                <option class="hidden"  selected disabled>Select Dose / डोस निवडा</option>
+                                <option>Dose 1</option>
+                                <option>Dose 2</option>
                             </select>
                           </div>
                             <input (click)="onSubmitRegistrationForm()" type="submit" class="btnRegister"  value="Register / नोंदणी करा"/>
@@ -191,7 +191,7 @@
                       <th>Parish </th>
                       <th>Age </th>
                       <th>Gender </th>
-                      <th>Dose 1 </th>
+                      <th>Dose </th>
                       <th>Med History </th>
                     </tr>
                     <tr *ngFor="let item of userList">
