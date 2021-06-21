@@ -10,7 +10,7 @@ export class UserServiceService {
 
   constructor(private http: HttpClient,private router: Router) { }
     userRegDetails(userRegData){
-      return this.http.post('https://mysterious-cove-63204.herokuapp.com/api/user_details_reg',userRegData);
+      return this.http.post('http://mysterious-cove-63204.herokuapp.com/api/user_details_reg',userRegData);
     }
     loginDetails(userData){
       return this.http.post('https://mysterious-cove-63204.herokuapp.com/api/user_details',userData);

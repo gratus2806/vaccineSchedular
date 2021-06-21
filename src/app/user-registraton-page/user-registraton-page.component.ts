@@ -38,9 +38,10 @@ export class UserRegistratonPageComponent implements OnInit {
   loadingForm;
   fileName="TaskForce Influnza.xlsx"
   userList;
-userDataTable;
-onuserdatatable=true;
-
+  userDataTable;
+  onuserdatatable=true;
+  secondDoseSelected;
+  dose1Date;
   constructor(public userService: UserServiceService, private router: Router) {
     this.UserRegPageChield=true;
     this.userService.getUserRegDetails().subscribe(data => {
@@ -52,6 +53,17 @@ onuserdatatable=true;
   ngOnInit(): void {
     // console.log(this.childName.toUpperCase())
 
+  }
+
+  selectedInput(event) {
+    let selected = event.target.value;
+    if(selected=="Dose 2"){
+      this.secondDoseSelected=true;
+     
+    } else{
+      this.secondDoseSelected=false;
+    }
+    console.log(">>>>>",selected)
   }
   onSubmitRegistrationForm(){
     
@@ -65,8 +77,10 @@ onuserdatatable=true;
       Gender:this.selectedGender,
       selectedHistory:this.selectedHistory,
       selectedDose:this.selectedDose,
-      SecretCode:Math.floor(1314 + Math.random() * 9000)
+      SecretCode:Math.floor(1314 + Math.random() * 9000),
+      dose1Date:this.dose1Date
     }
+    
     if(this.userRegData.Gender!="Gender" && this.userRegData.childName!="" && this.userRegData.Age!="" && this.userRegData.parentName!="" && this.userRegData.mobileNo!="" && this.userRegData.Village!="" && this.userRegData.Parish!="" ){
       var str = new String(this.userRegData.mobileNo) 
       var mobNoLen = str.length

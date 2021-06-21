@@ -118,11 +118,16 @@
                             </select>
                           </div>
                           <div class="form-group">
-                            <select class="form-control textTran" [(ngModel)]="selectedDose">
+                            <select class="form-control textTran" [(ngModel)]="selectedDose" (change)="selectedInput($event)">
                                 <option class="hidden"  selected disabled>Select Dose / डोस निवडा</option>
                                 <option>Dose 1</option>
                                 <option>Dose 2</option>
                             </select>
+                          </div>
+                          <div class="form-group" *ngIf="secondDoseSelected">
+                            <label style="color: red;">Select Date Of 1st Dose (पहील्या डॉसची तारीक निवडा). </label>
+                            
+                            <input type="date" class="form-control textTran" [(ngModel)]="dose1Date" placeholder="Select 1st Dose Date *" required />
                           </div>
                             <input (click)="onSubmitRegistrationForm()" type="submit" class="btnRegister"  value="Register / नोंदणी करा"/>
                             
@@ -192,6 +197,7 @@
                       <th>Age </th>
                       <th>Gender </th>
                       <th>Dose </th>
+                      <th>1st Dose Date</th>
                       <th>Med History </th>
                     </tr>
                     <tr *ngFor="let item of userList">
@@ -203,6 +209,8 @@
                       <td>{{item.Age}}</td>
                       <td>{{item.Gender}}</td>
                       <td>{{item.Dose1}}</td>
+                      <td *ngIf='item.SecretCode!=" "'>{{item.dose1Date}}</td>
+                      <td *ngIf='item.SecretCode==" "'>data Not Available</td>
                       <td>{{item.anyHistoryOfAllergies}}</td>
                     </tr>
   
