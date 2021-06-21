@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Pipe, PipeTransform } from '@angular/core';
 import { UserServiceService } from '../user-service.service';
 import {Router,ActivatedRoute} from "@angular/router";
 import * as XLSX from 'xlsx';
@@ -7,20 +7,21 @@ import * as XLSX from 'xlsx';
   templateUrl: './user-registraton-page.component.html',
   styleUrls: ['./user-registraton-page.component.css']
 })
+
 export class UserRegistratonPageComponent implements OnInit {
   userRegData;
   userData;
   selectedGender="Gender / लिंग निवडा";
-  village="Select Village / गाव निवडा";
-  parish="Select Parish / पॅरिष निवडा";
+  // village="Select Village / गाव निवडा";
+  // parish="Select Parish / पॅरिष निवडा";
   selectedHistory="Any Medical History";
   selectedDose="Dose 1 / पहिला डोस"
   childName;
   age;
   parentName;
   mobileNo;
-  // village;
-  // parish;
+  village;
+  parish;
   userDetailMissMatch;
   userDetail;
   UserRegPageChield;
@@ -39,6 +40,7 @@ export class UserRegistratonPageComponent implements OnInit {
   userList;
 userDataTable;
 onuserdatatable=true;
+
   constructor(public userService: UserServiceService, private router: Router) {
     this.UserRegPageChield=true;
     this.userService.getUserRegDetails().subscribe(data => {
@@ -48,6 +50,8 @@ onuserdatatable=true;
    }
 
   ngOnInit(): void {
+    // console.log(this.childName.toUpperCase())
+
   }
   onSubmitRegistrationForm(){
     

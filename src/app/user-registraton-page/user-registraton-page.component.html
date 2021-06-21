@@ -5,10 +5,14 @@
         <div class="col-md-3 register-left">
             <img (click)=regform()  src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
             <h3 (click)=securityVerification() >Welcome</h3>
-            <p>You are 30 seconds away from Registering Your Child for Vaccination Drive</p>
-            <p>Children between 6 months to 18yrs.
-              Vaccine Cost is Mrp ₹1200/per dose
-              </p>
+            <p>Influenza Vaccination Drive For Children between 6 months to 18yrs.
+              Vaccine Cost is Mrp ₹1200/per dose.</p>
+            <p style="padding:5px;">
+              इंफ्लून्झा लसीकरण कॅम्प  वय ६ महीने ते १८ वर्षा खालिल पाल्ल्यान साठी.
+            </p>
+            <p style="padding:15px;">
+              <b>Contact:</b> For any queries please feel free to contact <b>Vinay Machado +919225432233</b>
+            </p>
         </div>
         
         <div class="col-md-9 register-right" *ngIf="UserRegPageChield">
@@ -17,8 +21,8 @@
             </div>
             <div class="tab-content" id="myTabContent"  [class.blur]="loadingForm">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
-                    <h4 class="register-heading2" style="color: red;">नंदाखाल टास्कफोर्स  इंफ्लून्झा विकसिनॅशन कॅम्प </h4>
+                    <h3 class="register-heading">ZED Group Children (Influenza) Vaccination Drive</h3>
+                    <h4 class="register-heading2" style="color: red;">ZED इंफ्लून्झा लसीकरण कॅम्प </h4>
                     <div class="alert alert-danger" role="alert" *ngIf="userDetailMissMatch">
                       Please Enter Mobile No. Again...
                     </div>
@@ -39,7 +43,7 @@
                       
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control textTran" [(ngModel)]="childName" placeholder="Child Name / मुलाचा नाव  *" required />
+                                <input type="text" class="form-control textTran" [(ngModel)]="childName " placeholder="Child Name / पाल्याचं नाव  *" required />
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control textTran" [(ngModel)]="age" placeholder="Age / वय  *" required />
@@ -51,17 +55,16 @@
                                 <input type="text" class="form-control textTran" [(ngModel)]="mobileNo" placeholder="Mobile Number / मोबाईल नंबर *" required />
                             </div>
 
-                            <!-- <div class="form-group">
-                              <input type="text" class="form-control" [(ngModel)]="village" placeholder="Village *" required />
-                            </div> -->
                             <div class="form-group">
+                              <input type="text" class="form-control textTran" [(ngModel)]="village" placeholder="Village / गाव निवडा *" required />
+                            </div>
+                            <!-- <div class="form-group">
                               <select class="form-control" [(ngModel)]="parish">
                                 <option class="hidden"  selected disabled >Select Parish / पॅरिष निवडा</option>
                                 <option >Nandakhal</option>
-                                <!-- <option>Female</option> -->
                               </select>
-                            </div>
-                            <div class="form-group">
+                            </div> -->
+                            <!-- <div class="form-group">
                               <select class="form-control textTran" [(ngModel)]="village">
                                 <option class="hidden"  selected disabled >Select Village / गाव निवडा</option>
                                 <option >Angali</option>
@@ -92,12 +95,12 @@
                                 <option >Vatlai</option>
                                 <option >Vatar-Barodi</option>
                               </select>
-                            </div>
-                            
-                            
-                            <!-- <div class="form-group">
-                              <input type="text" class="form-control" [(ngModel)]="parish" placeholder="Parish *" required />
                             </div> -->
+                            
+                            
+                            <div class="form-group">
+                              <input type="text" class="form-control textTran" [(ngModel)]="parish" placeholder="Parish / Area *" required />
+                            </div>
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
@@ -110,8 +113,8 @@
                           <div class="form-group">
                             <select class="form-control textTran" [(ngModel)]="selectedHistory">
                                 <option class="hidden"  selected disabled>Any Medical History</option>
-                                <option>Yes</option>
                                 <option>No</option>
+                                <option>Yes</option>
                             </select>
                           </div>
                           <div class="form-group">
@@ -192,11 +195,11 @@
                       <th>Med History </th>
                     </tr>
                     <tr *ngFor="let item of userList">
-                      <td>{{item.chieldFullName}}</td>
-                      <td>{{item.parentFullName}}</td>
+                      <td>{{item.chieldFullName | titlecase}}</td>
+                      <td>{{item.parentFullName | titlecase}}</td>
                       <td>{{item.mobileNo}}</td>
-                      <td>{{item.Village}}</td>
-                      <td>{{item.Parish}}</td>
+                      <td>{{item.Village | titlecase}}</td>
+                      <td>{{item.Parish | titlecase}}</td>
                       <td>{{item.Age}}</td>
                       <td>{{item.Gender}}</td>
                       <td>{{item.Dose1}}</td>
