@@ -209,8 +209,8 @@
                       <td>{{item.Age}}</td>
                       <td>{{item.Gender}}</td>
                       <td>{{item.Dose1}}</td>
-                      <td *ngIf='item.SecretCode!=" "'>{{item.dose1Date}}</td>
-                      <td *ngIf='item.SecretCode==" "'>data Not Available</td>
+                      <td *ngIf='item.Dose1=="Dose 2"'>{{item.dose1Date}}</td>
+                      <td *ngIf='item.Dose1=="Dose 1"'>data Not Available</td>
                       <td>{{item.anyHistoryOfAllergies}}</td>
                     </tr>
   
