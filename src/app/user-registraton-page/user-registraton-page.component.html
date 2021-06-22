@@ -5,8 +5,9 @@
         <div class="col-md-3 register-left">
             <img (click)=regform()  src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
             <h3 (click)=securityVerification() >Welcome</h3>
-            <p>Influenza Vaccination Drive For Children between 6 months to 18yrs.
+            <p style="margin-bottom: 1px;">Influenza Vaccination Drive For Children between 6 months to 18yrs.
               Vaccine Cost is Mrp ₹1200/per dose.</p>
+              <p style="padding:15px;font-weight: 700;">*Dose Available Fluarix Tetra.*</p>
             <p style="padding:5px;">
               इंफ्लून्झा लसीकरण कॅम्प  वय ६ महीने ते १८ वर्षा खालिल पाल्ल्यान साठी.
             </p>
@@ -129,7 +130,7 @@
                             
                             <input type="date" class="form-control textTran" [(ngModel)]="dose1Date" placeholder="Select 1st Dose Date *" required />
                           </div>
-                            <input (click)="onSubmitRegistrationForm()" type="submit" class="btnRegister"  value="Register / नोंदणी करा"/>
+                            <input (click)="onSubmitRegistrationForm()" type="submit" class="btnRegister" style="width: 65%;"  value="Register / नोंदणी करा"/>
                             
                         </div>
                     </div>
@@ -157,7 +158,7 @@
                       </div>
                       <div class="col-md-6">
                           <input (click)="onSubmitVerify()" type="submit" class="btnRegister"  value="Verify"/>
-                          <input (click)="exportExcel()" type="submit" class="btnRegister"  value="Export"/>
+                          <input (click)="exportExcel()" type="submit" class="btnRegister" style="margin-right: 10px;"  value="Export"/>
                       </div>
                      
                   </div>
