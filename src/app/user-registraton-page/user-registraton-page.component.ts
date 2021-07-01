@@ -42,6 +42,10 @@ export class UserRegistratonPageComponent implements OnInit {
   onuserdatatable=true;
   secondDoseSelected;
   dose1Date;
+  linkValue;
+  linkDataValidation;
+  saveUsername1=true;
+  public saveUsername:boolean;
   constructor(public userService: UserServiceService, private router: Router) {
     this.UserRegPageChield=true;
     this.userService.getUserRegDetails().subscribe(data => {
@@ -51,10 +55,23 @@ export class UserRegistratonPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    // console.log(this.childName.toUpperCase())
+    this.userService.RegLinkVerify().subscribe(data => {
+      console.log("LinkValidation",data['LinkDetails'][0].linkData)
+      this.linkDataValidation = data['LinkDetails'][0].linkData
+    })
+  }
+  public onSaveUsernameChanged(value:boolean){
+    this.saveUsername = value;
+    console.log(">>>>>",this.saveUsername)
+    this.linkValue={
+      linkActive:this.saveUsername
+    }
+    this.userService.linkDetails(this.linkValue).subscribe(data => {
+    console.log("linkData",data['result'][5][0].linkData)
+    this.linkDataValidation=data['result'][5][0].linkData;
+    })
 
   }
-
   selectedInput(event) {
     let selected = event.target.value;
     if(selected=="Dose 2"){

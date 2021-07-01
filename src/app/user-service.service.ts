@@ -18,6 +18,12 @@ export class UserServiceService {
     getUserRegDetails(){
       return this.http.get('https://mysterious-cove-63204.herokuapp.com/api/getUser_details');
     }
+    linkDetails(linkValue){
+      return this.http.post('https://mysterious-cove-63204.herokuapp.com/api/RegLink',linkValue);
+    }
+    RegLinkVerify(){
+      return this.http.get('https://mysterious-cove-63204.herokuapp.com/api/RegLinkVerify');
+    }
     // https://mysterious-cove-63204.herokuapp.com
   
 }

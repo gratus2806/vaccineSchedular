@@ -8,7 +8,7 @@ const routes: Routes = [
   // {path:'',component:UserRegistratonPageComponent},
   {path:'',component:UserRegistratonPageComponent},
   {path:'user_reg',component:UserRegistratonPageComponent},
-  {path:'SecurityVerifyComponent',component:SecurityVerifyComponent}
+  {path:'RegLink',component:SecurityVerifyComponent}
 ];
 
 @NgModule({

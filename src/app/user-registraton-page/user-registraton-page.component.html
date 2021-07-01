@@ -1,226 +1,248 @@
 <div class="container register" *ngIf="onuserdatatable">
   
-    <div class="row" >
-      
-        <div class="col-md-3 register-left">
-            <img (click)=regform()  src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-            <h3 (click)=securityVerification() >Welcome</h3>
-            <p style="margin-bottom: 1px;">Influenza Vaccination Drive For Children between 6 months to 18yrs.
-              Vaccine Cost is Mrp ₹1200/per dose.</p>
-              <p style="padding:15px;font-weight: 700;">*Dose Available Fluarix Tetra.*</p>
-            <p style="padding:5px;">
-              इंफ्लून्झा लसीकरण कॅम्प  वय ६ महीने ते १८ वर्षा खालिल पाल्ल्यान साठी.
-            </p>
-            <p style="padding:15px;">
-              <b>Contact:</b> For any queries please feel free to contact <b>Vinay Machado +919225432233</b>
-            </p>
-        </div>
-        
-        <div class="col-md-9 register-right" *ngIf="UserRegPageChield">
-          <div style="position: absolute;top: 35%;left: 38%;z-index: 1;" *ngIf="loadingForm" >
-            <img style="margin: 30px auto;height: 84px;" src="../assets/loading.gif" />
-            </div>
-            <div class="tab-content" id="myTabContent"  [class.blur]="loadingForm">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">ZED Group Children (Influenza) Vaccination Drive</h3>
-                    <h4 class="register-heading2" style="color: red;">ZED इंफ्लून्झा लसीकरण कॅम्प </h4>
-                    <div class="alert alert-danger" role="alert" *ngIf="userDetailMissMatch">
-                      Please Enter Mobile No. Again...
-                    </div>
-                    <div class="alert alert-danger" role="alert" *ngIf="userDetail">
-                      Please Enter All Details...
-                    </div>
-                    <div class="alert alert-success" role="alert" *ngIf="successfull">
-                      You Have Successfully Registered...
-                    </div>
-                    <div class="alert alert-danger" role="alert" *ngIf="failed">
-                      Something went wrong try again...
-                    </div>
-                    <div class="alert alert-danger" role="alert" *ngIf="showDataavailDiv">
-                     {{dataAvailablity}}...
-                    </div>
-                    <!-- <form  [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()" > -->
-                    <div class="row register-form" style="padding-bottom: 6%;">
-                      
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control textTran" [(ngModel)]="childName " placeholder="Child Name / पाल्याचं नाव  *" required />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control textTran" [(ngModel)]="age" placeholder="Age / वय  *" required />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control textTran" [(ngModel)]="parentName" placeholder="Parent Name / पालकांचं नाव *" required />
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control textTran" [(ngModel)]="mobileNo" placeholder="Mobile Number / मोबाईल नंबर *" required />
-                            </div>
-
-                            <div class="form-group">
-                              <input type="text" class="form-control textTran" [(ngModel)]="village" placeholder="Your Village / गाव निवडा *" required />
-                            </div>
-                            <!-- <div class="form-group">
-                              <select class="form-control" [(ngModel)]="parish">
-                                <option class="hidden"  selected disabled >Select Parish / पॅरिष निवडा</option>
-                                <option >Nandakhal</option>
-                              </select>
-                            </div> -->
-                            <!-- <div class="form-group">
-                              <select class="form-control textTran" [(ngModel)]="village">
-                                <option class="hidden"  selected disabled >Select Village / गाव निवडा</option>
-                                <option >Angali</option>
-                                <option >Bavkhaul</option>
-                                <option >Banbhat</option>
-                                <option >Dontalav</option>
-                                <option >Ghotar - Anjeri</option>
-                                <option >Ghosali</option>
-                                <option >Ghotkal</option>
-                                <option >Jeladi-Adlai-Talai</option>
-                                <option >Khivni </option>
-                                <option >Khodale</option>
-                                <option >Kedar-J.P Nagar-Ponda</option>
-                                <option >Lalodi</option>
-                                <option >Medhe-Borbat</option>
-                                <option >Melody</option>
-                                <option >Mashad Ali</option>
-                                <option >Nandan</option>
-                                <option >Nonodi</option>
-                                <option >Padai-morwadi-gajure</option>
-                                <option >Persav</option>
-                                <option >Pedi</option>
-                                <option >Ranebhat </option>
-                                <option >Rumao Ali</option>
-                                <option >Torbhat-vadkhamb</option>
-                                <option >Unganbhat</option>
-                                <option >Vadi </option>
-                                <option >Vatlai</option>
-                                <option >Vatar-Barodi</option>
-                              </select>
-                            </div> -->
-                            
-                            
-                            <div class="form-group">
-                              <input type="text" class="form-control textTran" [(ngModel)]="parish" placeholder="Your Parish / Area *" required />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <select class="form-control textTran" [(ngModel)]="selectedGender">
-                              <option class="hidden"  selected disabled >Gender / लिंग निवडा</option>
-                              <option >Male</option>
-                              <option>Female</option>
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <select class="form-control textTran" [(ngModel)]="selectedHistory">
-                                <option class="hidden"  selected disabled>Any Medical History</option>
-                                <option>No</option>
-                                <option>Yes</option>
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <select class="form-control textTran" [(ngModel)]="selectedDose" (change)="selectedInput($event)">
-                                <option class="hidden"  selected disabled>Select Dose / डोस निवडा</option>
-                                <option>Dose 1</option>
-                                <option>Dose 2</option>
-                            </select>
-                          </div>
-                          <div class="form-group" *ngIf="secondDoseSelected">
-                            <label style="color: red;">Select Date Of 1st Dose (पहील्या डॉसची तारीक निवडा). </label>
-                            
-                            <input type="date" class="form-control textTran" [(ngModel)]="dose1Date" placeholder="Select 1st Dose Date *" required />
-                          </div>
-                            <input (click)="onSubmitRegistrationForm()" type="submit" class="btnRegister" style="width: 65%;"  value="Register / नोंदणी करा"/>
-                            
-                        </div>
-                    </div>
-                  <!-- </form> -->
-                </div>
-            </div>
-        </div>
-        <div class="col-md-9 register-right" *ngIf="UserSecurityVerify">
-          <div class="tab-content" id="myTabContent">
+  <div class="row" >
+    <div class="col-md-3 register-left">
+        <img (click)=regform()  src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+        <h3 (click)=securityVerification() >Welcome</h3>
+        <p style="margin-bottom: 1px;">Influenza Vaccination Drive For Children between 6 months to 18yrs.
+          Vaccine Cost is Mrp ₹1200/per dose.</p>
+          <p style="padding:15px;font-weight: 700;">*Dose Available Fluarix Tetra.*</p>
+        <p style="padding:5px;">
+          इंफ्लून्झा लसीकरण कॅम्प  वय ६ महीने ते १८ वर्षा खालिल पाल्ल्यान साठी.
+        </p>
+        <p style="padding:15px;">
+          <b>Contact:</b> For any queries please feel free to contact <b>Vinay Machado +919225432233</b>
+        </p>
+    </div>
+    <div *ngIf='linkDataValidation=="false"'>
+      <div class="col-md-9 register-right" *ngIf="UserRegPageChield">
+        <div style="position: absolute;top: 35%;left: 38%;z-index: 1;" *ngIf="loadingForm" >
+          <img style="margin: 30px auto;height: 84px;" src="../assets/loading.gif" />
+          </div>
+          <div class="tab-content" id="myTabContent"  [class.blur]="loadingForm">
               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                  <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
-                 
+                  <h3 class="register-heading">ZED Group Children (Influenza) Vaccination Drive</h3>
+                  <h4 class="register-heading2" style="color: red;">ZED इंफ्लून्झा लसीकरण कॅम्प </h4>
+                  <div class="alert alert-danger" role="alert" *ngIf="userDetailMissMatch">
+                    Please Enter Mobile No. Again...
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="userDetail">
+                    Please Enter All Details...
+                  </div>
+                  <div class="alert alert-success" role="alert" *ngIf="successfull">
+                    You Have Successfully Registered...
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="failed">
+                    Something went wrong try again...
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="showDataavailDiv">
+                    {{dataAvailablity}}...
+                  </div>
                   <!-- <form  [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()" > -->
-                  <div class="row register-form">
+                  <div class="row register-form" style="padding-bottom: 6%;">
                     
                       <div class="col-md-6">
                           <div class="form-group">
-                              <input type="text" class="form-control" [(ngModel)]="secNo" placeholder="Secret No *"  />
+                              <input type="text" class="form-control textTran" [(ngModel)]="childName " placeholder="Child Name / पाल्याचं नाव  *" required />
                           </div>
-                          <h2>Or</h2>
                           <div class="form-group">
-                            <input type="text" class="form-control" [(ngModel)]="mobNO" placeholder="Mobie No. "  />
-                        </div>
-                         
+                              <input type="text" class="form-control textTran" [(ngModel)]="age" placeholder="Age / वय  *" required />
+                          </div>
+                          <div class="form-group">
+                              <input type="text" class="form-control textTran" [(ngModel)]="parentName" placeholder="Parent Name / पालकांचं नाव *" required />
+                          </div>
+                          <div class="form-group">
+                              <input type="text" class="form-control textTran" [(ngModel)]="mobileNo" placeholder="Mobile Number / मोबाईल नंबर *" required />
+                          </div>
+
+                          <div class="form-group">
+                            <input type="text" class="form-control textTran" [(ngModel)]="village" placeholder="Your Village / गाव निवडा *" required />
+                          </div>
+                          <!-- <div class="form-group">
+                            <select class="form-control" [(ngModel)]="parish">
+                              <option class="hidden"  selected disabled >Select Parish / पॅरिष निवडा</option>
+                              <option >Nandakhal</option>
+                            </select>
+                          </div> -->
+                          <!-- <div class="form-group">
+                            <select class="form-control textTran" [(ngModel)]="village">
+                              <option class="hidden"  selected disabled >Select Village / गाव निवडा</option>
+                              <option >Angali</option>
+                              <option >Bavkhaul</option>
+                              <option >Banbhat</option>
+                              <option >Dontalav</option>
+                              <option >Ghotar - Anjeri</option>
+                              <option >Ghosali</option>
+                              <option >Ghotkal</option>
+                              <option >Jeladi-Adlai-Talai</option>
+                              <option >Khivni </option>
+                              <option >Khodale</option>
+                              <option >Kedar-J.P Nagar-Ponda</option>
+                              <option >Lalodi</option>
+                              <option >Medhe-Borbat</option>
+                              <option >Melody</option>
+                              <option >Mashad Ali</option>
+                              <option >Nandan</option>
+                              <option >Nonodi</option>
+                              <option >Padai-morwadi-gajure</option>
+                              <option >Persav</option>
+                              <option >Pedi</option>
+                              <option >Ranebhat </option>
+                              <option >Rumao Ali</option>
+                              <option >Torbhat-vadkhamb</option>
+                              <option >Unganbhat</option>
+                              <option >Vadi </option>
+                              <option >Vatlai</option>
+                              <option >Vatar-Barodi</option>
+                            </select>
+                          </div> -->
+                          
+                          
+                          <div class="form-group">
+                            <input type="text" class="form-control textTran" [(ngModel)]="parish" placeholder="Your Parish / Area *" required />
+                          </div>
                       </div>
                       <div class="col-md-6">
-                          <input (click)="onSubmitVerify()" type="submit" class="btnRegister"  value="Verify"/>
-                          <input (click)="exportExcel()" type="submit" class="btnRegister" style="margin-right: 10px;"  value="Export"/>
+                        <div class="form-group">
+                          <select class="form-control textTran" [(ngModel)]="selectedGender">
+                            <option class="hidden"  selected disabled >Gender / लिंग निवडा</option>
+                            <option >Male</option>
+                            <option>Female</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control textTran" [(ngModel)]="selectedHistory">
+                              <option class="hidden"  selected disabled>Any Medical History</option>
+                              <option>No</option>
+                              <option>Yes</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control textTran" [(ngModel)]="selectedDose" (change)="selectedInput($event)">
+                              <option class="hidden"  selected disabled>Select Dose / डोस निवडा</option>
+                              <option>Dose 1</option>
+                              <option>Dose 2</option>
+                          </select>
+                        </div>
+                        <div class="form-group" *ngIf="secondDoseSelected">
+                          <label style="color: red;">Select Date Of 1st Dose (पहील्या डॉसची तारीक निवडा). </label>
+                          
+                          <input type="date" class="form-control textTran" [(ngModel)]="dose1Date" placeholder="Select 1st Dose Date *" required />
+                        </div>
+                          <input (click)="onSubmitRegistrationForm()" type="submit" class="btnRegister" style="width: 65%;"  value="Register / नोंदणी करा"/>
+                          
                       </div>
-                     
-                  </div>
-                  <div class="alert alert-success" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedSuccess">
-                    User Data Is  Verified from {{parishName}}...
-                  </div>
-                  <div class="alert alert-danger" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedFailed">
-                    User Data Failed Verifcation...
                   </div>
                 <!-- </form> -->
               </div>
           </div>
       </div>
-      
     </div>
-   
-  </div>
-  <div class="container" *ngIf="userDataTable">
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
-            
-            <div class="row register-form" style="padding: 10% 1%;margin-top: 10%;">
-              <div style="width: 100%;">
-                <input style="float: right;margin-bottom: 5%;margin-top: 1%;border: none;border-radius: 1.5rem;padding: 2%;background: #0062cc;color: #fff;font-weight: 600;width: 20%;cursor: pointer; margin-right: 2px;" (click)="exportExcelSheet()" type="submit" class="btnRegister"  value="Export"/>
-                <input style="float: right;margin-bottom: 5%;margin-top: 1%;border: none;border-radius: 1.5rem;padding: 2%;background: #0062cc;color: #fff;font-weight: 600;width: 20%;cursor: pointer;margin-right: 15px;" (click)="back()" type="submit" class="btnRegister"  value="Back"/>
+    <div *ngIf='linkDataValidation=="true"'>
+      <div class="col-md-9 register-right" *ngIf="UserRegPageChield">
+        <div style="position: absolute;top: 35%;left: 38%;z-index: 1;" *ngIf="loadingForm" >
+          <img style="margin: 30px auto;height: 84px;" src="../assets/loading.gif" />
+          </div>
+          <div class="tab-content" id="myTabContent"  [class.blur]="loadingForm">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <h3 class="register-heading">ZED Group Children (Influenza) Vaccination Drive</h3>
+                  <h4 class="register-heading2" style="color: red;">Form Is Closed For a While. </h4>
               </div>
-            
-              <div class="col-md-12">
-                  <table id="excel-table">
-                    <tr>
-                      <th>Child Name </th>
-                      <th>Parent Name </th>
-                      <th>Mobile </th>
-                      <th>Village </th>
-                      <th>Parish </th>
-                      <th>Age </th>
-                      <th>Gender </th>
-                      <th>Dose </th>
-                      <th>1st Dose Date</th>
-                      <th>Med History </th>
-                    </tr>
-                    <tr *ngFor="let item of userList">
-                      <td>{{item.chieldFullName | titlecase}}</td>
-                      <td>{{item.parentFullName | titlecase}}</td>
-                      <td>{{item.mobileNo}}</td>
-                      <td>{{item.Village | titlecase}}</td>
-                      <td>{{item.Parish | titlecase}}</td>
-                      <td>{{item.Age}}</td>
-                      <td>{{item.Gender}}</td>
-                      <td>{{item.Dose1}}</td>
-                      <td *ngIf='item.Dose1=="Dose 2"'>{{item.dose1Date}}</td>
-                      <td *ngIf='item.Dose1=="Dose 1"'>data Not Available</td>
-                      <td>{{item.anyHistoryOfAllergies}}</td>
-                    </tr>
-  
-                  </table>
-                 
-              </div>
-             
-             
+          </div>
+      </div>
+    </div>
+    <div class="col-md-9 register-right" *ngIf="UserSecurityVerify">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
+                <h2 class="register-heading" style="color: red;">Link ON/OFF</h2>
+                <label class="switch register-heading" style="left: 47%;" *ngIf='linkDataValidation=="false"'>
+                  <input #saveUserNameCheckBox id="saveUserNameCheckBox" type="checkbox" [checked]="saveUsername" (change)="onSaveUsernameChanged(saveUserNameCheckBox.checked)"  >
+                  <span class="slider round"></span>
+                </label>
+                <label class="switch register-heading" style="left: 47%;" *ngIf='linkDataValidation=="true"'>
+                  <input #saveUserNameCheckBox id="saveUserNameCheckBox" type="checkbox" [checked]="saveUsername1" (change)="onSaveUsernameChanged(saveUserNameCheckBox.checked)" >
+                  <span class="slider round"></span>
+                </label>
+                
+                <!-- <form  [formGroup]="registrationForm" (ngSubmit)="onSubmitRegistrationForm()" > -->
+                <div class="row register-form" style="margin-top: 1px;">
+                  
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="secNo" placeholder="Secret No *"  />
+                        </div>
+                        <h2>Or</h2>
+                        <div class="form-group">
+                          <input type="text" class="form-control" [(ngModel)]="mobNO" placeholder="Mobie No. "  />
+                      </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <input (click)="onSubmitVerify()" type="submit" class="btnRegister"  value="Verify"/>
+                        <input (click)="exportExcel()" type="submit" class="btnRegister" style="margin-right: 10px;"  value="Export"/>
+                        
+                      </div>
+                      
+                    
+                </div>
+                <div class="alert alert-success" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedSuccess">
+                  User Data Is  Verified from {{parishName}}...
+                </div>
+                <div class="alert alert-danger" role="alert" style="text-align: center;font-weight: 900;font-size: 153%;" *ngIf="verifiedFailed">
+                  User Data Failed Verifcation...
+                </div>
+              <!-- </form> -->
             </div>
         </div>
     </div>
   </div>
+</div>
+<div class="container" *ngIf="userDataTable">
+  <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h3 class="register-heading">Nandakhal Taskforce Children (Influenza) Vaccination Drive</h3>
+          
+          <div class="row register-form" style="padding: 10% 1%;margin-top: 10%;">
+            <div style="width: 100%;">
+              <input style="float: right;margin-bottom: 5%;margin-top: 1%;border: none;border-radius: 1.5rem;padding: 2%;background: #0062cc;color: #fff;font-weight: 600;width: 20%;cursor: pointer; margin-right: 2px;" (click)="exportExcelSheet()" type="submit" class="btnRegister"  value="Export"/>
+              <input style="float: right;margin-bottom: 5%;margin-top: 1%;border: none;border-radius: 1.5rem;padding: 2%;background: #0062cc;color: #fff;font-weight: 600;width: 20%;cursor: pointer;margin-right: 15px;" (click)="back()" type="submit" class="btnRegister"  value="Back"/>
+            </div>
+          
+            <div class="col-md-12">
+                <table id="excel-table">
+                  <tr>
+                    <th>Child Name </th>
+                    <th>Parent Name </th>
+                    <th>Mobile </th>
+                    <th>Village </th>
+                    <th>Parish </th>
+                    <th>Age </th>
+                    <th>Gender </th>
+                    <th>Dose </th>
+                    <th>1st Dose Date</th>
+                    <th>Med History </th>
+                  </tr>
+                  <tr *ngFor="let item of userList">
+                    <td>{{item.chieldFullName | titlecase}}</td>
+                    <td>{{item.parentFullName | titlecase}}</td>
+                    <td>{{item.mobileNo}}</td>
+                    <td>{{item.Village | titlecase}}</td>
+                    <td>{{item.Parish | titlecase}}</td>
+                    <td>{{item.Age}}</td>
+                    <td>{{item.Gender}}</td>
+                    <td>{{item.Dose1}}</td>
+                    <td *ngIf='item.Dose1=="Dose 2"'>{{item.dose1Date}}</td>
+                    <td *ngIf='item.Dose1=="Dose 1"'>data Not Available</td>
+                    <td>{{item.anyHistoryOfAllergies}}</td>
+                  </tr>
+
+                </table>
+                
+            </div>
+            
+            
+          </div>
+      </div>
+  </div>
+</div>
